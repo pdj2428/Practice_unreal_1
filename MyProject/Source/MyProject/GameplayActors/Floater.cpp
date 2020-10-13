@@ -29,13 +29,19 @@ void AFloater::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	float initialX = FMath::FRandRange(-500.f, 500.f);
+	float initialY = FMath::FRandRange(-500.f, 500.f);
+	float initialZ = FMath::FRandRange(-500.f, 500.f);
+
+	InitialLocation.X = initialX;
+	InitialLocation.Y = initialY;
+	InitialLocation.Z = initialZ;
+
 	PlacedLocation = GetActorLocation();
 	if(bInitializeFloaterLocations)
 		SetActorLocation(InitialLocation);
 	
 	
-	StaticMesh->AddForce(InitialForce);
-	StaticMesh->AddTorque(InitialTorque);
 }
 
 // Called every frame
