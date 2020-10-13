@@ -2,7 +2,7 @@
 
 
 #include "Floater.h"
-
+#include "Components/StaticMeshComponent.h"
 // Sets default values
 AFloater::AFloater()
 {
@@ -19,6 +19,9 @@ AFloater::AFloater()
 
 	bInitializeFloaterLocations = false;
 	bShouldFloat = false;
+
+	InitialForce = FVector(20000.0f, 0.0f, 0.0f);
+	InitialTorque = FVector(20000.0f, 0.0f, 0.0f);
 }
 
 // Called when the game starts or when spawned
@@ -30,16 +33,9 @@ void AFloater::BeginPlay()
 	if(bInitializeFloaterLocations)
 		SetActorLocation(InitialLocation);
 	
-	/*FHitResult HitResult;
-	FVector LocalOffset = FVector(200.0f, 0.0f, 0.0f);
-
-	FRotator Rotation = FRotator(0.0f, 0.0f, 1.0f);
-
-	AddActorWorldOffset(LocalOffset, false, &HitResult);
-	AddActorLocalOffset(LocalOffset, false, &HitResult);
 	
-	AddActorWorldRotation(Rotation, false, &HitResult);
-	AddActorLocalRotation(Rotation, false, &HitResult);*/
+	StaticMesh->AddForce(InitialForce);
+	StaticMesh->AddTorque(InitialTorque);
 }
 
 // Called every frame
@@ -52,17 +48,6 @@ void AFloater::Tick(float DeltaTime)
 		AddActorLocalOffset(InitialDirection, false, &HitResult);
 
 		FVector HitLocation = HitResult.Location;
-
-		/*FHitResult HitResult;
-		FVector LocalOffset = FVector(1.0f, 0.0f, 0.0f);
-
-		FRotator Rotation = FRotator(0.0f, 0.0f, 1.0f);
-
-		AddActorWorldOffset(LocalOffset, false, &HitResult);
-		AddActorLocalOffset(LocalOffset, false, &HitResult);
-
-		AddActorWorldRotation(Rotation, false, &HitResult);
-		AddActorLocalRotation(Rotation, false, &HitResult);*/
 	}
 
 }
