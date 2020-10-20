@@ -30,6 +30,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadonly, Category = Movemnet)
 	class APawn* Pawn;
 
-
-
+	UPROPERTY(EditAnywhere, BlueprintReadonly, Category = Movemnet)
+	class AMain* Main;
 };

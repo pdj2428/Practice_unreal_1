@@ -30,7 +30,13 @@ public:
 	class UParticleSystem* OverlapParticles;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item | Sounds")
-		class USoundCue* OverlapSound;
+	class USoundCue* OverlapSound;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item | ItemProperties")
+	bool bRotate;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item | ItemProperties")
+	float RotationRate;
 
 protected:
 	// Called when the game starts or when spawned
