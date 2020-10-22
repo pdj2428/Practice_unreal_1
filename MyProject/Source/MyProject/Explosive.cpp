@@ -21,13 +21,15 @@ void AExplosive::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor
 		if (Main)
 		{
 			Main->DecrementHealth(Damage);
+
+			Destroy();
 		}
 	}
 }
 
 void AExplosive::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	Super::OnOverlapEnd(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex);
+	//Super::OnOverlapEnd(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex);
 	
 	UE_LOG(LogTemp, Warning, TEXT("Explosive::OnOverlapEnd()"));
 }

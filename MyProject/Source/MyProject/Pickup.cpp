@@ -21,13 +21,16 @@ void APickup::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* O
 		if (Main)
 		{
 			Main->IncrementCoins(CoinCount);
+			Main->PickupLocations.Add(GetActorLocation());
+
+			Destroy();
 		}
 	}
 }
 
 void APickup::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	Super::OnOverlapEnd(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex);
+	//Super::OnOverlapEnd(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex);
 
 	UE_LOG(LogTemp, Warning, TEXT("APickup::OnOverlapEnd()"));
 }
