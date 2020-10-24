@@ -36,6 +36,9 @@ public:
 	// Sets default values for this character's properties
 	AMain();
 	
+	UPROPERTY(EditDefaultsOnly, Category = "SavedData")
+	TSubclassOf<class AItemStorage> WeaponStorage;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Combat")
 	bool bHasCombatTarget;
 
@@ -139,9 +142,13 @@ public:
 
 	void DecrementHealth(float Amount);
 
-	void TakeDamage(float DamageAmount);
+	void TakeDamage(float DamageAmount, AEnemy* Enemy);
 
+	UFUNCTION(BlueprintCallable)
 	void IncrementCoins(int32 Amount);
+
+	UFUNCTION(BlueprintCallable)
+	void IncrementHealth(float Amount);
 
 	void Die();
 
@@ -163,6 +170,9 @@ public:
 
 	/** Called for side to side input */
 	void MoveRight(float Value);
+
+	bool bMovingForward;
+	bool bMovingRight;
 
 	/** Called via input to turn at a given rate
 	* @param Rate this is a normalized rate, i.e, 1.0 means 100% desired turn rate
@@ -208,4 +218,17 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void DeathEnd();
+
+	void UpdateCombatTarget();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+	TSubclassOf<class AEnemy> EnemyFileter;
+
+	void SwitchLevel(FName LevelName);
+
+	UFUNCTION(BlueprintCallable)
+	void SaveGame();
+
+	UFUNCTION(BlueprintCallable)
+	void LoadGame(bool SetPosition);
 };

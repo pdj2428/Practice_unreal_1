@@ -26,6 +26,8 @@ public:
 	// Sets default values for this character's properties
 	AEnemy();
 
+	bool bHasValidTarget;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movement")
 	EEnemyMovementStatus EnemyMovementStatus;
 
@@ -134,7 +136,7 @@ public:
 
 	void TakeDamage(float DamageAmount);
 
-	void Die();
+	void Die(AActor* Causer);
 
 	UFUNCTION(BlueprintCallable)
 	void DeathEnd();
